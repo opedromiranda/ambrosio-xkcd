@@ -2,6 +2,8 @@
 
 XKCD plugin for Ambrosio.
 
+Inspired by [Hubot's XKCD plugin](https://github.com/github/hubot-scripts/blob/master/src/scripts/xkcd.coffee)
+
 ### Version
 0.5
 
