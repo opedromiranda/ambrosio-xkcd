@@ -1,10 +1,10 @@
 package ambrosio_xkcd
 
 import (
-	"github.com/opedromiranda/ambrosio"
-	"encoding/json"
-	"io/ioutil"
 	"bytes"
+	"encoding/json"
+	"github.com/opedromiranda/ambrosio"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -19,7 +19,7 @@ func requestXkcd(url string) (string, error) {
 	body, requestError := ioutil.ReadAll(resp.Body)
 
 	var dat map[string]interface{}
-	if err := json.Unmarshal(body, &dat); err == nil && requestError == nil {
+	if jsonError := json.Unmarshal(body, &dat); jsonError == nil && requestError == nil {
 		var buffer bytes.Buffer
 		buffer.WriteString(dat["title"].(string))
 		buffer.WriteString("\n")
@@ -28,6 +28,11 @@ func requestXkcd(url string) (string, error) {
 		result = string(buffer.String())
 	} else {
 		result = ERROR_MESSAGE
+		if requestError != nil {
+			error = requestError
+		} else {
+			error = jsonError
+		}
 	}
 
 	return result, error
