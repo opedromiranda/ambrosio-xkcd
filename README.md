@@ -1,4 +1,4 @@
-# Ambrosio Base64
+# Ambrosio XKCD
 
 XKCD plugin for Ambrosio.
 
